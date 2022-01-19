@@ -28,7 +28,7 @@ const subscribe = (callback: (message: Message) => void): (() => void) => {
   const subscription = observable.subscribe({
     next: callback,
   });
-  return () => subscription.unsubscribe();
+  return (): void => subscription.unsubscribe();
 };
 
 export default subscribe;

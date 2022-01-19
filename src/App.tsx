@@ -1,19 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import {FC} from 'react';
 import {ThemeProvider} from 'styled-components';
-import generateMessage, {Message} from './Api';
 
-const App: React.FC<Record<string, never>> = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+import theme from './theme';
+import {useMessages} from './hooks';
 
-  useEffect(() => {
-    const cleanUp = generateMessage((message: Message) => {
-      setMessages((oldMessages) => [...oldMessages, message]);
-    });
-    return cleanUp;
-  }, [setMessages]);
+const App: FC<Record<string, never>> = () => {
+  const [messages] = useMessages();
 
   return (
-    <ThemeProvider theme={{colors: {error: 'red'}}}>
+    <ThemeProvider theme={theme}>
       <div>
         {messages?.map?.((msg) => (
           <div key={msg?.message}>{msg?.message}</div>
