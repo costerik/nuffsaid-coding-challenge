@@ -1,21 +1,33 @@
+import '@fontsource/roboto';
 import {FC} from 'react';
-import {ThemeProvider} from 'styled-components';
+import {withStyles, createStyles, WithStyles} from '@material-ui/core/styles';
+import {Header, ActionButtons, Card} from './components';
+import {Priority} from './Api';
 
-import theme from './theme';
-import {useMessages} from './hooks';
+//import {useMessages} from './hooks';
 
-const App: FC<Record<string, never>> = () => {
-  const [messages] = useMessages();
+const styles = (): ReturnType<typeof createStyles> =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      flexGrow: 1,
+    },
+  });
 
+type AppType = Record<string, never> & WithStyles<typeof styles>;
+
+const App: FC<AppType> = (props) => {
+  const {classes} = props;
   return (
-    <ThemeProvider theme={theme}>
-      <div>
-        {messages?.map?.((msg) => (
-          <div key={msg?.message}>{msg?.message}</div>
-        ))}
-      </div>
-    </ThemeProvider>
+    <div className={classes.root}>
+      <Header title={'nuffsiad.com coding challenge'} />
+      <ActionButtons />
+      <Card message="hello" priority={Priority['Error']} />
+      <Card message="hello" priority={Priority['Warn']} />
+      <Card message="hello" priority={Priority['Info']} />
+    </div>
   );
 };
 
-export default App;
+export default withStyles(styles)(App);
