@@ -3,7 +3,7 @@ import styles from './board.styles';
 import {Message} from '../../Api';
 
 export type BoardType = {
-  topOffset?: number;
+  topOffset?: () => number;
   labelHeaderError?: string;
   labelHeaderWarn?: string;
   labelHeaderInfo?: string;

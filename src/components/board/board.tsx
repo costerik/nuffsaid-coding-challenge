@@ -4,21 +4,24 @@ import {withStyles} from '@material-ui/core/styles';
 import List from '../list';
 import type {BoardType} from './board.types';
 import styles from './board.styles';
+import {useMessages} from '../../contexts';
 
 const Board: FC<BoardType> = (props) => {
   const {classes, topOffset} = props;
+  const {state} = useMessages();
+  const {errorMessages, warnMessages, infoMessages} = state;
   const labelHeaderError = props.labelHeaderError ?? 'Error Type 1';
   const labelHeaderWarn = props.labelHeaderWarn ?? 'Error Type 2';
   const labelHeaderInfo = props.labelHeaderInfo ?? 'Error Type 3';
-  const errorMessages = props.errorMessages ?? [];
-  const warnMessages = props.warnMessages ?? [];
-  const infoMessages = props.infoMessages ?? [];
+  const em = props.errorMessages ?? errorMessages;
+  const wm = props.warnMessages ?? warnMessages;
+  const im = props.infoMessages ?? infoMessages;
 
   return (
     <div className={classes.root}>
-      <List messages={errorMessages} topOffset={topOffset} labelHeader={labelHeaderError} />
-      <List messages={warnMessages} topOffset={topOffset} labelHeader={labelHeaderWarn} />
-      <List messages={infoMessages} topOffset={topOffset} labelHeader={labelHeaderInfo} />
+      <List messages={em} count={em.length.toString()} topOffset={topOffset} labelHeader={labelHeaderError} />
+      <List messages={wm} count={wm.length.toString()} topOffset={topOffset} labelHeader={labelHeaderWarn} />
+      <List messages={im} count={im.length.toString()} topOffset={topOffset} labelHeader={labelHeaderInfo} />
     </div>
   );
 };
