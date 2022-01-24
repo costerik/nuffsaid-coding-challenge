@@ -40,7 +40,6 @@ module.exports = {
     },
   },
   rules: {
-    indent: ['error', ERROR],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
