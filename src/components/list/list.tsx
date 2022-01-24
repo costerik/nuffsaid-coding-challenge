@@ -21,7 +21,7 @@ const ListHeader: FC<ListHeaderType> = (props) => {
 };
 
 const List: FC<ListType> = (props) => {
-  const {messages, labelHeader, sublabelHeader, count, classes, topOffset = 0} = props;
+  const {messages, labelHeader, sublabelHeader, count, classes, topOffset} = props;
   const rowRenderer: FC<ListRowProps> = ({key, index, style}) => {
     return (
       <div key={key} style={style}>
@@ -37,7 +37,7 @@ const List: FC<ListType> = (props) => {
         {({width, height}): ReactNode => {
           return (
             <VirtualizedList
-              height={height - topOffset}
+              height={height - ((topOffset && topOffset()) || 0)}
               width={width * 0.95}
               rowCount={messages.length}
               rowHeight={150}

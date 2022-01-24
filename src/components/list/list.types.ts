@@ -7,7 +7,7 @@ export type ListType = {
   labelHeader?: string;
   sublabelHeader?: string;
   count?: string;
-  topOffset?: number;
+  topOffset?: () => number;
 } & WithStyles<typeof styles>;
 
 export type ListHeaderType = {label?: string; sublabel?: string; count?: string};
