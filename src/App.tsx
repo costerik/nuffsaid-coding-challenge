@@ -1,17 +1,15 @@
 import '@fontsource/roboto';
-import {FC} from 'react';
+import {FC, useRef, useCallback} from 'react';
 import {withStyles, createStyles, WithStyles} from '@material-ui/core/styles';
-import {Header, ActionButtons, Card} from './components';
-import {Priority} from './Api';
-
-//import {useMessages} from './hooks';
+import {Header, ActionButtons, Board} from './components';
+import {MessagesProvider} from './contexts';
 
 const styles = (): ReturnType<typeof createStyles> =>
   createStyles({
     root: {
+      height: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      flexGrow: 1,
     },
   });
 
@@ -19,14 +17,21 @@ type AppType = Record<string, never> & WithStyles<typeof styles>;
 
 const App: FC<AppType> = (props) => {
   const {classes} = props;
+  const headerRef = useRef<HTMLElement>(null);
+  const actionsButtonsRef = useRef<HTMLDivElement>(null);
+  const topOffset = useCallback(
+    (): number => (headerRef?.current?.offsetHeight || 0) + (actionsButtonsRef?.current?.offsetHeight || 0),
+    [],
+  );
+
   return (
-    <div className={classes.root}>
-      <Header title={'nuffsiad.com coding challenge'} />
-      <ActionButtons />
-      <Card message="hello" priority={Priority['Error']} />
-      <Card message="hello" priority={Priority['Warn']} />
-      <Card message="hello" priority={Priority['Info']} />
-    </div>
+    <MessagesProvider>
+      <div className={classes.root}>
+        <Header title={'nuffsiad.com coding challenge'} innerRef={headerRef} />
+        <ActionButtons innerRef={actionsButtonsRef} />
+        <Board topOffset={topOffset} />
+      </div>
+    </MessagesProvider>
   );
 };
 
