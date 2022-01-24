@@ -6,6 +6,7 @@ const styles = (theme: Theme): ReturnType<typeof createStyles> =>
       justifyContent: 'center',
       display: 'flex',
       marginTop: '2.5px',
+      marginBottom: '30px',
     },
     leftRoot: {
       backgroundColor: theme.colors.info,

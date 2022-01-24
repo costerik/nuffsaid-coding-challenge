@@ -21,7 +21,6 @@ const LocalMuiCard = styled(MuiCard)<Partial<CardType>>`
 
 const Card: React.FC<CardType> = (props) => {
   const {buttonText = 'Clear', onClick, message, classes, priority, theme} = props;
-  console.log(props);
   return (
     <LocalMuiCard priority={priority} theme={theme}>
       <CardContent>

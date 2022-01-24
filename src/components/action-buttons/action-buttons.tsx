@@ -1,14 +1,14 @@
-import {memo} from 'react';
+import {FC, forwardRef, memo} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import type {ActionButtonsType} from './action-buttons.types';
 import styles from './action-buttons.styles';
 
-const ActionButtons: React.FC<ActionButtonsType> = (props) => {
+const ActionButtons: FC<ActionButtonsType> = forwardRef<HTMLDivElement, ActionButtonsType>((props, ref) => {
   const {classes, stopButton, clearButton} = props;
   return (
-    <div className={classes.container}>
+    <div className={classes.container} ref={ref}>
       <Button className={classes.leftRoot} variant="contained" size="small" onClick={stopButton?.onClick}>
         {stopButton?.text || 'stop'}
       </Button>
@@ -17,7 +17,7 @@ const ActionButtons: React.FC<ActionButtonsType> = (props) => {
       </Button>
     </div>
   );
-};
+});
 
 export default withStyles(styles)(ActionButtons);
 export const MemoizedActionButtons = memo(withStyles(styles)(ActionButtons));
