@@ -1,4 +1,4 @@
-import {createContext, useReducer, useContext, FC, useEffect} from 'react';
+import {createContext, useReducer, useContext, FC, useEffect, useCallback} from 'react';
 import {Priority} from '../../Api';
 import {useMessages as useMessagesHook} from '../../hooks';
 import {Received, MessagesContextType} from './messages.types';
@@ -8,20 +8,42 @@ const MessagesContext = createContext<MessagesContextType | undefined>(undefined
 
 const MessagesProvider: FC = ({children}) => {
   const [state, dispatch] = useReducer(messagesReducer, initialState);
+  const {stop} = state;
+
+  const dispatchSwitchFlow = useCallback((): void => dispatch({type: Received.SwitchFlowMessages}), []);
+  const dispatchClear = useCallback((): void => dispatch({type: Received.Clear}), []);
+  const dispatchClearMessage = useCallback(
+    (messageType: Priority, index: number): void =>
+      dispatch({
+        type: Received.ClearMessage,
+        payload: {
+          messageType,
+          index,
+        },
+      }),
+    [],
+  );
 
   const [messages] = useMessagesHook();
+
   useEffect(() => {
     const [message] = messages.slice(-1);
-    if (message?.priority === Priority['Warn']) dispatch({type: Received.WarnMessage, payload: message});
-    if (message?.priority === Priority['Info']) dispatch({type: Received.InfoMessage, payload: message});
-    if (message?.priority === Priority['Error']) dispatch({type: Received.ErrorMessage, payload: message});
-  }, [messages]);
+    if (!stop) {
+      if (message?.priority === Priority['Warn']) dispatch({type: Received.WarnMessage, payload: message});
+      if (message?.priority === Priority['Info']) dispatch({type: Received.InfoMessage, payload: message});
+      if (message?.priority === Priority['Error']) dispatch({type: Received.ErrorMessage, payload: message});
+    }
+  }, [messages, stop]);
 
   return (
     <MessagesContext.Provider
       value={{
         state,
         dispatch,
+        dispatchSwitchFlow,
+        dispatchClear,
+        dispatchClearMessage,
+        ...state,
       }}>
       {children}
     </MessagesContext.Provider>

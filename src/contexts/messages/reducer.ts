@@ -1,9 +1,11 @@
 import {State, Action, Received} from './messages.types';
+import {Priority} from '../../Api';
 
 export const initialState = {
   errorMessages: [],
   warnMessages: [],
   infoMessages: [],
+  stop: false,
 };
 
 export const messagesReducer = (state: State, action: Action): State => {
@@ -26,8 +28,35 @@ export const messagesReducer = (state: State, action: Action): State => {
         infoMessages: [...state.infoMessages, action.payload],
       };
     }
+    case Received['SwitchFlowMessages']: {
+      return {
+        ...state,
+        stop: !state.stop,
+      };
+    }
+    case Received['Clear']: {
+      return {
+        ...state,
+        infoMessages: [],
+        warnMessages: [],
+        errorMessages: [],
+      };
+    }
+    case Received['ClearMessage']: {
+      let typeMsg: keyof Omit<State, 'stop'> = 'infoMessages';
+      if (action.payload?.messageType === Priority.Error) typeMsg = 'errorMessages';
+      if (action.payload?.messageType === Priority.Warn) typeMsg = 'warnMessages';
+      const newMessages = [
+        ...state[typeMsg].slice(0, action.payload.index),
+        ...state[typeMsg].slice(action.payload.index + 1),
+      ];
+      return {
+        ...state,
+        [typeMsg]: newMessages,
+      };
+    }
     default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
+      throw new Error(`Unhandled action type: ${JSON.stringify(action)}`);
     }
   }
 };
