@@ -13,13 +13,21 @@ const MessagesProvider: FC = ({children}) => {
   const dispatchSwitchFlow = useCallback((): void => dispatch({type: Received.SwitchFlowMessages}), []);
   const dispatchClear = useCallback((): void => dispatch({type: Received.Clear}), []);
   const dispatchClearMessage = useCallback(
-    (messageType: Priority, index: number): void =>
+    (messageType, index): void =>
       dispatch({
         type: Received.ClearMessage,
         payload: {
           messageType,
           index,
         },
+      }),
+    [],
+  );
+  const dispatchSwitchSnackbar = useCallback(
+    ({message, show}): void =>
+      dispatch({
+        type: Received.Snackbar,
+        payload: {message, show},
       }),
     [],
   );
@@ -31,9 +39,12 @@ const MessagesProvider: FC = ({children}) => {
     if (!stop) {
       if (message?.priority === Priority['Warn']) dispatch({type: Received.WarnMessage, payload: message});
       if (message?.priority === Priority['Info']) dispatch({type: Received.InfoMessage, payload: message});
-      if (message?.priority === Priority['Error']) dispatch({type: Received.ErrorMessage, payload: message});
+      if (message?.priority === Priority['Error']) {
+        dispatch({type: Received.ErrorMessage, payload: message});
+        dispatchSwitchSnackbar({message, show: true});
+      }
     }
-  }, [messages, stop]);
+  }, [messages, stop, dispatchSwitchSnackbar]);
 
   return (
     <MessagesContext.Provider
@@ -43,6 +54,7 @@ const MessagesProvider: FC = ({children}) => {
         dispatchSwitchFlow,
         dispatchClear,
         dispatchClearMessage,
+        dispatchSwitchSnackbar,
         ...state,
       }}>
       {children}

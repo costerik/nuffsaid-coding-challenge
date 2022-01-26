@@ -7,6 +7,7 @@ export enum Received {
   SwitchFlowMessages,
   Clear,
   ClearMessage,
+  Snackbar,
 }
 
 export type Action =
@@ -20,6 +21,13 @@ export type Action =
         messageType: Priority;
         index: number;
       };
+    }
+  | {
+      type: Received.Snackbar;
+      payload: {
+        message?: Message;
+        show: boolean;
+      };
     };
 export type Dispatch = (action: Action) => void;
 export type State = {
@@ -27,6 +35,10 @@ export type State = {
   warnMessages: Message[];
   infoMessages: Message[];
   stop: boolean;
+  snackbar: {
+    message?: Message;
+    show: boolean;
+  };
 };
 export type MessagesContextType = {
   state: State;
@@ -34,4 +46,5 @@ export type MessagesContextType = {
   dispatchSwitchFlow: () => void;
   dispatchClear: () => void;
   dispatchClearMessage: (messageType: Priority, index: number) => void;
+  dispatchSwitchSnackbar: (data: State['snackbar']) => void;
 } & State;

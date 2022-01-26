@@ -6,6 +6,10 @@ export const initialState = {
   warnMessages: [],
   infoMessages: [],
   stop: false,
+  snackbar: {
+    message: undefined,
+    show: false,
+  },
 };
 
 export const messagesReducer = (state: State, action: Action): State => {
@@ -53,6 +57,15 @@ export const messagesReducer = (state: State, action: Action): State => {
       return {
         ...state,
         [typeMsg]: newMessages,
+      };
+    }
+    case Received['Snackbar']: {
+      return {
+        ...state,
+        snackbar: {
+          message: action.payload?.message,
+          show: action.payload.show,
+        },
       };
     }
     default: {
