@@ -1,4 +1,4 @@
-import {Message, Priority} from '../../Api';
+import {Message, Priority} from '../../utilities';
 
 export enum Received {
   ErrorMessage,

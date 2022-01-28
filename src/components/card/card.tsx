@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import type {CardType} from './card.types';
 import styles from './card.styles';
-import {Priority} from '../../Api';
+import {Priority} from '../../utilities';
 
 const LocalMuiCard = styled(MuiCard)<Partial<CardType>>`
   background-color: ${(props): string => {

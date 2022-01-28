@@ -2,16 +2,7 @@ import random from 'lodash/random';
 import faker from 'faker';
 import {Observable} from 'rxjs';
 
-export enum Priority {
-  Error,
-  Warn,
-  Info,
-}
-
-export interface Message {
-  message: string;
-  priority: Priority;
-}
+import {Message, Priority} from '../api';
 
 const observable = new Observable<Message>((subscriber) => {
   const generate = (): void => {

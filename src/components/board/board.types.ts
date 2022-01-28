@@ -1,7 +1,7 @@
 import {WithStyles} from '@material-ui/core/styles';
 import {SnackbarProps} from '@material-ui/core/Snackbar';
 import styles from './board.styles';
-import {Message} from '../../Api';
+import {Message} from '../../utilities';
 import {ListType} from '../list/list.types';
 
 export type BoardType = {

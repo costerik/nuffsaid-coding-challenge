@@ -1,5 +1,5 @@
 import {createContext, useReducer, useContext, FC, useEffect, useCallback} from 'react';
-import {Priority} from '../../Api';
+import {Priority} from '../../utilities';
 import {useMessages as useMessagesHook} from '../../hooks';
 import {Received, MessagesContextType} from './messages.types';
 import {messagesReducer, initialState} from './reducer';

@@ -1,5 +1,5 @@
 import {WithStyles} from '@material-ui/core/styles';
-import {Message} from '../../Api';
+import {Message} from '../../utilities';
 import {MessagesContextType} from '../../contexts/messages/messages.types';
 import styles from './list.styles';
 
