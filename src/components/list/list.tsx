@@ -21,11 +21,14 @@ const ListHeader: FC<ListHeaderType> = (props) => {
 };
 
 const List: FC<ListType> = (props) => {
-  const {messages, labelHeader, sublabelHeader, count, classes, topOffset} = props;
+  const {messages, labelHeader, sublabelHeader, count, classes, topOffset, onClick} = props;
   const rowRenderer: FC<ListRowProps> = ({key, index, style}) => {
     return (
       <div key={key} style={style}>
-        <Card {...messages[index]} />
+        <Card
+          {...messages[index]}
+          onClick={(): void => onClick && onClick(messages[index].priority, index)}
+        />
       </div>
     );
   };
