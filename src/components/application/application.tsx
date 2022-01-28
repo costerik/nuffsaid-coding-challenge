@@ -2,8 +2,8 @@ import '@fontsource/roboto';
 import {FC, useRef, useCallback} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 
-import {Header, ContainerActionButtons, ContainerBoard} from '..';
-import {MessagesProvider} from '../../contexts';
+import {Header, ContainerActionButtons, ContainerBoard} from 'components';
+import {MessagesProvider} from 'contexts';
 import type {ApplicationType} from './application.types';
 import styles from './application.styles';
 

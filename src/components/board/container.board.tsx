@@ -1,5 +1,5 @@
 import {FC, useCallback} from 'react';
-import {useMessages} from '../../contexts';
+import {useMessages} from 'contexts';
 import Board from './board';
 
 const ContainerBoard: FC<{topOffset?: () => number}> = (props) => {

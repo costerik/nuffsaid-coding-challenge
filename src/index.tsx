@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import {MuiThemeProvider} from '@material-ui/core';
 
-import theme from './theme';
-import {Application} from './components';
+import {theme} from 'styles';
+import {Application} from 'components';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+render(
   <React.StrictMode>
     <MuiThemeProvider theme={theme}>
       <Application />

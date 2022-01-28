@@ -38,6 +38,9 @@ module.exports = {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
+    'import/resolver': {
+      typescript: {},
+    },
   },
   rules: {
     'linebreak-style': ['error', 'unix'],

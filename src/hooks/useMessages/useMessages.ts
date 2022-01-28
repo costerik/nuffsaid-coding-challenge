@@ -1,5 +1,5 @@
 import {useState, useEffect, Dispatch, SetStateAction} from 'react';
-import {generateMessage, Message} from '../../utilities';
+import {generateMessage, Message} from 'utilities';
 
 const useMessages = (): [messages: Message[], setMessages: Dispatch<SetStateAction<Message[]>>] => {
   const [messages, setMessages] = useState<Message[]>([]);

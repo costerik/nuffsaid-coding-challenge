@@ -1,10 +1,9 @@
 import {FC, memo} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 
-import List from '../list';
+import {Alert, List} from 'components';
 import type {BoardType} from './board.types';
 import styles from './board.styles';
-import {Alert} from '..';
 
 const Board: FC<BoardType> = (props) => {
   const {classes, topOffset, errorMessages, warnMessages, infoMessages, alert = {open: false}, list} = props;

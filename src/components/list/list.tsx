@@ -3,10 +3,10 @@ import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import VirtualizedList from 'react-virtualized/dist/commonjs/List';
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import VirtualizedAutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 import type {ListRowProps} from 'react-virtualized';
 
-import {Card} from '..';
+import {Card} from 'components';
 import styles from './list.styles';
 import type {ListType, ListHeaderType} from './list.types';
 
@@ -36,7 +36,7 @@ const List: FC<ListType> = (props) => {
   return (
     <div className={classes.root}>
       <ListHeader label={labelHeader} sublabel={sublabelHeader} count={count} />
-      <AutoSizer>
+      <VirtualizedAutoSizer>
         {({width, height}): ReactNode => {
           return (
             <VirtualizedList
@@ -48,7 +48,7 @@ const List: FC<ListType> = (props) => {
             />
           );
         }}
-      </AutoSizer>
+      </VirtualizedAutoSizer>
     </div>
   );
 };
