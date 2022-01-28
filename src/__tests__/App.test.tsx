@@ -1,7 +1,7 @@
 import {render} from '@testing-library/react';
-import App from '../App';
+import {Application} from '../components';
 
 test('renders learn react link', () => {
-  const comp = render(<App />);
+  const comp = render(<Application />);
   expect(comp).toBeTruthy();
 });
