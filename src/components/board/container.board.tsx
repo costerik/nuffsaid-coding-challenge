@@ -1,13 +1,13 @@
-import {FC, useCallback} from 'react';
-import {useMessages} from 'contexts';
+import { FC, useCallback } from 'react';
+import { useMessages } from 'contexts';
 import Board from './board';
 
-const ContainerBoard: FC<{topOffset?: () => number}> = (props) => {
+const ContainerBoard: FC<{ topOffset?: () => number }> = (props) => {
   const {
     errorMessages,
     warnMessages,
     infoMessages,
-    snackbar: {show, message},
+    snackbar: { show, message },
     dispatchSwitchSnackbar,
     dispatchClearMessage,
   } = useMessages();
@@ -15,7 +15,7 @@ const ContainerBoard: FC<{topOffset?: () => number}> = (props) => {
   const onClose = useCallback(
     (_, reason) => {
       if (reason === 'clickaway') return;
-      dispatchSwitchSnackbar({show: false});
+      dispatchSwitchSnackbar({ show: false });
     },
     [dispatchSwitchSnackbar],
   );

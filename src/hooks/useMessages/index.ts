@@ -1,1 +1,1 @@
-export {default} from './useMessages';
+export { default } from './useMessages';

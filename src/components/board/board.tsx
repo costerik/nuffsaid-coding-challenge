@@ -1,12 +1,20 @@
-import {FC, memo} from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { FC, memo } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
-import {Alert, List} from 'components';
-import type {BoardType} from './board.types';
+import { Alert, List } from 'components';
+import type { BoardType } from './board.types';
 import styles from './board.styles';
 
 const Board: FC<BoardType> = (props) => {
-  const {classes, topOffset, errorMessages, warnMessages, infoMessages, alert = {open: false}, list} = props;
+  const {
+    classes,
+    topOffset,
+    errorMessages,
+    warnMessages,
+    infoMessages,
+    alert = { open: false },
+    list,
+  } = props;
   const labelHeaderError = props.labelHeaderError ?? 'Error Type 1';
   const labelHeaderWarn = props.labelHeaderWarn ?? 'Error Type 2';
   const labelHeaderInfo = props.labelHeaderInfo ?? 'Error Type 3';

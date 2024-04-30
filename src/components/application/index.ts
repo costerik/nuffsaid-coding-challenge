@@ -1,2 +1,2 @@
-export {default} from './application';
+export { default } from './application';
 export * from './application.types';

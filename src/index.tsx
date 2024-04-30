@@ -1,9 +1,9 @@
 import React from 'react';
-import {render} from 'react-dom';
-import {MuiThemeProvider} from '@material-ui/core';
+import { render } from 'react-dom';
+import { MuiThemeProvider } from '@material-ui/core';
 
-import {theme} from 'styles';
-import {Application} from 'components';
+import { theme } from 'styles';
+import { Application } from 'components';
 import reportWebVitals from './reportWebVitals';
 
 render(

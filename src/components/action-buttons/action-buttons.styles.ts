@@ -1,4 +1,4 @@
-import {createStyles, Theme} from '@material-ui/core/styles';
+import { createStyles, Theme } from '@material-ui/core/styles';
 
 const styles = (theme: Theme): ReturnType<typeof createStyles> =>
   createStyles({

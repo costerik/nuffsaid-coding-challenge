@@ -1,5 +1,5 @@
-import {WithStyles, Theme} from '@material-ui/core/styles';
-import {Message} from '../../utilities';
+import { WithStyles, Theme } from '@material-ui/core/styles';
+import { Message } from '../../utilities';
 import styles from './card.styles';
 
 export type CardType = {

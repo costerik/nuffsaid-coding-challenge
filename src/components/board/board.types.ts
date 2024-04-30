@@ -1,8 +1,8 @@
-import {WithStyles} from '@material-ui/core/styles';
-import {SnackbarProps} from '@material-ui/core/Snackbar';
+import { WithStyles } from '@material-ui/core/styles';
+import { SnackbarProps } from '@material-ui/core/Snackbar';
 import styles from './board.styles';
-import {Message} from 'utilities';
-import {ListType} from 'components';
+import { Message } from 'utilities';
+import { ListType } from 'components';
 
 export type BoardType = {
   topOffset?: () => number;
@@ -15,6 +15,6 @@ export type BoardType = {
   errorMessages?: Message[];
   warnMessages?: Message[];
   infoMessages?: Message[];
-  alert?: {text?: string} & SnackbarProps;
+  alert?: { text?: string } & SnackbarProps;
   list?: Partial<ListType>;
 } & WithStyles<typeof styles>;

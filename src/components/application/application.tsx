@@ -1,14 +1,14 @@
 import '@fontsource/roboto';
-import {FC, useRef, useCallback} from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { FC, useRef, useCallback } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
-import {Header, ContainerActionButtons, ContainerBoard} from 'components';
-import {MessagesProvider} from 'contexts';
-import type {ApplicationType} from './application.types';
+import { Header, ContainerActionButtons, ContainerBoard } from 'components';
+import { MessagesProvider } from 'contexts';
+import type { ApplicationType } from './application.types';
 import styles from './application.styles';
 
 const App: FC<ApplicationType> = (props) => {
-  const {classes} = props;
+  const { classes } = props;
   const headerRef = useRef<HTMLElement>(null);
   const actionButtonsRef = useRef<HTMLDivElement>(null);
   const topOffset = useCallback(

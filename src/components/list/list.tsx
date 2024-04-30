@@ -1,17 +1,17 @@
-import {memo, FC, ReactNode} from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { memo, FC, ReactNode } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import VirtualizedList from 'react-virtualized/dist/commonjs/List';
 import VirtualizedAutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
-import type {ListRowProps} from 'react-virtualized';
+import type { ListRowProps } from 'react-virtualized';
 
-import {Card} from 'components';
+import { Card } from 'components';
 import styles from './list.styles';
-import type {ListType, ListHeaderType} from './list.types';
+import type { ListType, ListHeaderType } from './list.types';
 
 const ListHeader: FC<ListHeaderType> = (props) => {
-  const {label = '', sublabel = 'Count', count = '0'} = props;
+  const { label = '', sublabel = 'Count', count = '0' } = props;
   return (
     <Paper elevation={0}>
       <Typography variant="headline">{label}</Typography>
@@ -21,8 +21,8 @@ const ListHeader: FC<ListHeaderType> = (props) => {
 };
 
 const List: FC<ListType> = (props) => {
-  const {messages, labelHeader, sublabelHeader, count, classes, topOffset, onClick} = props;
-  const rowRenderer: FC<ListRowProps> = ({key, index, style}) => {
+  const { messages, labelHeader, sublabelHeader, count, classes, topOffset, onClick } = props;
+  const rowRenderer: FC<ListRowProps> = ({ key, index, style }) => {
     return (
       <div key={key} style={style}>
         <Card
@@ -37,7 +37,7 @@ const List: FC<ListType> = (props) => {
     <div className={classes.root}>
       <ListHeader label={labelHeader} sublabel={sublabelHeader} count={count} />
       <VirtualizedAutoSizer>
-        {({width, height}): ReactNode => {
+        {({ width, height }): ReactNode => {
           return (
             <VirtualizedList
               height={height - ((topOffset && topOffset()) || 0)}

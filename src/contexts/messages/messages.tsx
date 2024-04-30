@@ -1,17 +1,17 @@
-import {createContext, useReducer, useContext, FC, useEffect, useCallback} from 'react';
-import {Priority} from 'utilities';
-import {useMessages as useMessagesHook} from 'hooks';
-import {Received, MessagesContextType} from './messages.types';
-import {messagesReducer, initialState} from './reducer';
+import { createContext, useReducer, useContext, FC, useEffect, useCallback } from 'react';
+import { Priority } from 'utilities';
+import { useMessages as useMessagesHook } from 'hooks';
+import { Received, MessagesContextType } from './messages.types';
+import { messagesReducer, initialState } from './reducer';
 
 const MessagesContext = createContext<MessagesContextType | undefined>(undefined);
 
-const MessagesProvider: FC = ({children}) => {
+const MessagesProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(messagesReducer, initialState);
-  const {stop} = state;
+  const { stop } = state;
 
-  const dispatchSwitchFlow = useCallback((): void => dispatch({type: Received.SwitchFlowMessages}), []);
-  const dispatchClear = useCallback((): void => dispatch({type: Received.Clear}), []);
+  const dispatchSwitchFlow = useCallback((): void => dispatch({ type: Received.SwitchFlowMessages }), []);
+  const dispatchClear = useCallback((): void => dispatch({ type: Received.Clear }), []);
   const dispatchClearMessage = useCallback(
     (messageType, index): void =>
       dispatch({
@@ -24,10 +24,10 @@ const MessagesProvider: FC = ({children}) => {
     [],
   );
   const dispatchSwitchSnackbar = useCallback(
-    ({message, show}): void =>
+    ({ message, show }): void =>
       dispatch({
         type: Received.Snackbar,
-        payload: {message, show},
+        payload: { message, show },
       }),
     [],
   );
@@ -37,11 +37,11 @@ const MessagesProvider: FC = ({children}) => {
   useEffect(() => {
     const [message] = messages.slice(-1);
     if (!stop) {
-      if (message?.priority === Priority['Warn']) dispatch({type: Received.WarnMessage, payload: message});
-      if (message?.priority === Priority['Info']) dispatch({type: Received.InfoMessage, payload: message});
+      if (message?.priority === Priority['Warn']) dispatch({ type: Received.WarnMessage, payload: message });
+      if (message?.priority === Priority['Info']) dispatch({ type: Received.InfoMessage, payload: message });
       if (message?.priority === Priority['Error']) {
-        dispatch({type: Received.ErrorMessage, payload: message});
-        dispatchSwitchSnackbar({message, show: true});
+        dispatch({ type: Received.ErrorMessage, payload: message });
+        dispatchSwitchSnackbar({ message, show: true });
       }
     }
   }, [messages, stop, dispatchSwitchSnackbar]);
@@ -56,7 +56,8 @@ const MessagesProvider: FC = ({children}) => {
         dispatchClearMessage,
         dispatchSwitchSnackbar,
         ...state,
-      }}>
+      }}
+    >
       {children}
     </MessagesContext.Provider>
   );
@@ -70,4 +71,4 @@ const useMessages = (): MessagesContextType => {
   return context;
 };
 
-export {MessagesProvider, useMessages};
+export { MessagesProvider, useMessages };

@@ -1,5 +1,5 @@
-import {State, Action, Received} from './messages.types';
-import {Priority} from 'utilities';
+import { State, Action, Received } from './messages.types';
+import { Priority } from 'utilities';
 
 export const initialState = {
   errorMessages: [],

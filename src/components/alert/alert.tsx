@@ -1,10 +1,10 @@
-import {FC, memo} from 'react';
-import Snackbar, {SnackbarProps} from '@material-ui/core/Snackbar';
+import { FC, memo } from 'react';
+import Snackbar, { SnackbarProps } from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const Alert: FC<{text?: string} & SnackbarProps> = (props) => {
-  const {text, ...rest} = props;
+const Alert: FC<{ text?: string } & SnackbarProps> = (props) => {
+  const { text, ...rest } = props;
   return (
     <Snackbar
       key={text}

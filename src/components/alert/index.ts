@@ -1,1 +1,1 @@
-export {default, MemoizedAlert} from './alert';
+export { default, MemoizedAlert } from './alert';

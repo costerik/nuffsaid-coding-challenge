@@ -1,9 +1,9 @@
-import {FC, RefObject} from 'react';
+import { FC, RefObject } from 'react';
 import ActionButtons from './action-buttons';
-import {useMessages} from 'contexts';
+import { useMessages } from 'contexts';
 
-const ContainerActionButtons: FC<{innerRef: RefObject<HTMLDivElement>}> = (props) => {
-  const {stop, dispatchSwitchFlow, dispatchClear} = useMessages();
+const ContainerActionButtons: FC<{ innerRef: RefObject<HTMLDivElement> }> = (props) => {
+  const { stop, dispatchSwitchFlow, dispatchClear } = useMessages();
   return (
     <ActionButtons
       stopButton={{

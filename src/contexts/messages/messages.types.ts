@@ -1,4 +1,4 @@
-import {Message, Priority} from 'utilities';
+import { Message, Priority } from 'utilities';
 
 export enum Received {
   ErrorMessage,
@@ -11,7 +11,7 @@ export enum Received {
 }
 
 export type Action =
-  | {type: Received.WarnMessage | Received.InfoMessage | Received.ErrorMessage; payload: Message}
+  | { type: Received.WarnMessage | Received.InfoMessage | Received.ErrorMessage; payload: Message }
   | {
       type: Received.Clear | Received.SwitchFlowMessages;
     }

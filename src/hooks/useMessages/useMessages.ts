@@ -1,5 +1,5 @@
-import {useState, useEffect, Dispatch, SetStateAction} from 'react';
-import {generateMessage, Message} from 'utilities';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { generateMessage, Message } from 'utilities';
 
 const useMessages = (): [messages: Message[], setMessages: Dispatch<SetStateAction<Message[]>>] => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -13,5 +13,4 @@ const useMessages = (): [messages: Message[], setMessages: Dispatch<SetStateActi
 
   return [messages, setMessages];
 };
-
 export default useMessages;
